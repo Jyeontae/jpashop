@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
+@Getter
 @RequiredArgsConstructor
 public class MemberRepository {
 

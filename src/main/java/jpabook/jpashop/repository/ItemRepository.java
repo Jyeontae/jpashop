@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Item;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Getter
 public class ItemRepository {
     private final EntityManager em;
 

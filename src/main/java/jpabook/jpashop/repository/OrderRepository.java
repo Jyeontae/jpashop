@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Getter
 public class OrderRepository {
     private final EntityManager em;
 
@@ -25,6 +27,13 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
+    public List<Order> findAllStatic(){
+        return em.createQuery("select o from Order o join o.member m" +
+                        " where o.status = :status" +
+                        " and m.name like : name", Order.class)
+                .setMaxResults(1000)
+                .getResultList();
+    }
     public List<Order> findAllByString(OrderSearch orderSearch){ //동적쿼리 방법1(권장x)
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
