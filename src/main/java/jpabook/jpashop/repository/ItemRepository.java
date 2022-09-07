@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Item;
+import jpabook.jpashop.domain.item.Book;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,6 @@ import java.util.List;
 @Getter
 public class ItemRepository {
     private final EntityManager em;
-
 
     public void save(Item item){
         if(item.getId() == null){//새 상품 등록
