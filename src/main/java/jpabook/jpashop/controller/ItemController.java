@@ -52,6 +52,9 @@ public class ItemController {
         return "items/updateItemForm";
     }
 
+    /**
+     * 상품 수정
+     */
     @PostMapping(value = "/items/{itemId}/edit")
     public String updateItem(@PathVariable String itemId, @ModelAttribute("form") BookForm form){
         Book book = Book.updateBook(form.getId(), form.getName(), form.getPrice(), form.getStockQuantity(), form.getAuthor(), form.getIsbn());

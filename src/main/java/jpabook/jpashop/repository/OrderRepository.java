@@ -27,7 +27,7 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-    public List<Order> findAllStatic(){
+    public List<Order> findAll(){
         return em.createQuery("select o from Order o join o.member m" +
                         " where o.status = :status" +
                         " and m.name like : name", Order.class)
