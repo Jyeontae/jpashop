@@ -47,6 +47,7 @@ public class MemberApiController {
     static class MemberDto {
         private String name;
     }
+
     @PostMapping("/api/v1/members")
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member){ //나중에 DTO로 바꿔야함
         Long id = memberService.join(member);

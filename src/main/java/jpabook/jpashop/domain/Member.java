@@ -26,4 +26,12 @@ public class Member {
     @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+
+    public static Member createMember(String name, String city, String street, String zipcode){
+        Member member = new Member();
+        member.setName(name);
+        Address address = Address.createAddress(city, street, zipcode);
+        member.setAddress(address);
+        return member;
+    }
 }
