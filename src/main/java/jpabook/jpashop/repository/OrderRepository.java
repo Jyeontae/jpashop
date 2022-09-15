@@ -3,7 +3,6 @@ package jpabook.jpashop.repository;
 import jpabook.jpashop.domain.Order;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -102,4 +101,19 @@ public class OrderRepository {
     }//단점: 유지보수성이 낮다.
 
     //결론: 쿼리dsl을 사용하자.
+
+    public List<Order> findAllWithMemberDelivery(){
+        return em.createQuery("select o from Order o"+
+                                    " join fetch o.member m"+
+                                    " join fetch o.delivery d", Order.class
+                ).getResultList();
+    } //이 메소드가 나오면  LAZY무시하고 조인 시키는 페치 조인 기능임.
+
+    public List<OrderQuerySimpleDto> findOrderDtos() {
+        return em.createQuery("select new jpabook.jpashop.repository.OrderQuerySimpleDto(o.id, m.name, o.orderDate, o.status, d.address)"
+                                + " from Order o"+
+                                " join o.member m"+
+                                " join o.delivery d", OrderQuerySimpleDto.class
+        ).getResultList();
+    }
 }
